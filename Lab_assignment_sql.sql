@@ -80,12 +80,16 @@ insert into rating values (15, 115, 1);
 insert into rating values (16,116,0);
 
 -- 3--
-SELECT ord_amount from orders where ord_amount>=3000 and cus_gender =m; 
+SELECT ord_amount, sum (cus_gender)from orders where ord_amount>=3000 group by cus_gender;
 -- 4-- 
 SELECT order_id and cus_name where from customer and orders where cus_id=2;  
 -- 5 
-select prod_id from supplier_pricing where (select(count) supp_id > 1 );
+select prod_id from supplier_pricing group by supp_id having (count) supp_id > 1 ;
 -- 6
 select min(supp_price) from supplier_pricing where (select (cat_id, supp_name,prod_name,prod_price));
 -- 7
-select prod_id and prod_name from 
+select prod_id and prod_name from product;
+-- 8
+select cus_name, cus_gender from customer where cus_name like '% A'; 
+-- 9
+select 
